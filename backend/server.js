@@ -7,6 +7,12 @@ app.use(router);
 const PORT = 5000;
 const io = socketio(server);
 
+io.on('connection',(socket) => {
+  console.log("connection");
+  socket.on('disconnect',() => {
+    console.log('User disconnect');
+  })
+})
 server.listen(PORT, () => {
   console.log(`listen to PORT ${PORT}`);
 });
