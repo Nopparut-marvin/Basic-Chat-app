@@ -23,7 +23,8 @@ io.on("connection", (socket) => {
   });
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
-    io.on("message", { user: user.name, text: message });
+    // console.log(user);
+    io.emit("message", { user: user.name, text: message });
     callback();
   });
 });

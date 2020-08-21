@@ -34,20 +34,20 @@ const Chat = () => {
     };
   }, [PORT_SOCKET]);
   useEffect(() => {
-    socket.on("message", () => {
-      setMessages({
-        ...messages,
-        message,
-      });
+    socket.on("message", (message) => {
+      setMessages(messages => [ ...messages, message ]);
     });
-  }, [message, messages]);
-  const sendMessage = (e) => {
-    e.preventDefault();
+  }, []);
+  const sendMessage = (event) => {
+    event.preventDefault();
     if (message)
       socket.emit("sendMessage", message, () => {
         setMessage("");
       });
   };
+  useEffect(() => {
+     console.log(messages);
+  }, [messages])
   return (
     <>
       <Container className={classes.container} maxWidth="sm">
@@ -58,10 +58,11 @@ const Chat = () => {
           flexDirection="column"
           borderRadius="12px"
           boxShadow="2px 2px 10px lightGrey"
+          border="2px solid red"
         >
           <NavBar />
-          <Window />
-          <Form />
+          <Window messages={messages} name={name}/>
+          <Form setMessage={setMessage} sendMessage={sendMessage} message={message}/>
         </Box>
       </Container>
     </>

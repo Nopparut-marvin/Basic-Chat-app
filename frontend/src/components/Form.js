@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius:"12px",
     }
   }));
-const Form = () => {
+const Form = ({setMessage,sendMessage,message}) => {
     const classes = useStyles();
 
   return (
@@ -24,8 +24,11 @@ const Form = () => {
             <TextField
               variant="outlined"
               fullWidth
-              placeholder="Your name"
+              value={message}
+              placeholder="write..."
               className={classes.inArea}
+              onChange={(e)=> setMessage(e.target.value)}
+              onKeyPress={(e)=> e.key === 'Enter' ? sendMessage(e) : null} 
             />
           </Box>
           <Box
@@ -38,6 +41,7 @@ const Form = () => {
                   color="primary"
                   variant="contained"
                   className={classes.button}
+                  onClick={(e) => sendMessage(e)}
                 >
                   Send
                 </Button>
