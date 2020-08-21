@@ -7,12 +7,17 @@ app.use(router);
 const PORT = 5000;
 const io = socketio(server);
 
-io.on('connection',(socket) => {
+const { addUser, removeUser, getUser } = require("./user.js");
+io.on("connection", (socket) => {
   console.log("connection");
-  socket.on('disconnect',() => {
-    console.log('User disconnect');
-  })
-})
+  socket.on("disconnect", () => {
+    console.log("User disconnect");
+  });
+  socket.on("join", ({ name }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name });
+    if (error) return callback({ error });
+  });
+});
 server.listen(PORT, () => {
   console.log(`listen to PORT ${PORT}`);
 });

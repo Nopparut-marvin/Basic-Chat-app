@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Paper,
   Container,
   Typography,
   TextField,
@@ -31,12 +30,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Login = () => {
+  const [name, setName] = useState("");
   const classes = useStyles();
-
+  const handleClick = () => {};
   return (
     <>
       <Container className={classes.container} maxWidth="sm">
-        <Box className={classes.paper} borderRadius="12px" boxShadow="2px 2px 10px lightGrey">
+        <Box
+          className={classes.paper}
+          borderRadius="12px"
+          boxShadow="2px 2px 10px lightGrey"
+        >
           <Typography variant="h5" color="primary" align="center">
             Please enter your name
           </Typography>
@@ -47,6 +51,9 @@ const Login = () => {
                 size="small"
                 fullWidth
                 placeholder="Your name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
               />
             </Box>
             <Box
@@ -55,9 +62,15 @@ const Login = () => {
               alignItems="center"
               paddingLeft="20px"
             >
-              <Button color="primary" variant="contained">
-                Continue
-              </Button>
+              <Link to={`chat?name=${name}`}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={handleClick}
+                >
+                  Continue
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Box>
