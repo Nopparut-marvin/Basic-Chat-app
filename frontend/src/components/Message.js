@@ -4,23 +4,24 @@ import { Box, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   AnotherUser: {
     borderRadius: "12px",
-    border: "2px solid green",
     height: "70%",
     marginLeft: "15px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "10px",
     paddingRight: "10px",
+    backgroundColor:"#f1faee"
+
   },
   Me: {
     borderRadius: "12px",
-    border: "2px solid green",
     height: "70%",
     marginRight: "15px",
     display: "flex",
     alignItems: "center",
     paddingLeft: "10px",
     paddingRight: "10px",
+    backgroundColor:"#f1faee"
   },
   wrapBox: {
     display: "flex",

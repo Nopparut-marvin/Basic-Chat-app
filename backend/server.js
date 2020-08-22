@@ -11,7 +11,9 @@ const { addUser, removeUser, getUser } = require("./user.js");
 io.on("connection", (socket) => {
   console.log("connection");
   socket.on("disconnect", () => {
-    console.log("User disconnect");
+    const user = removeUser(socket.id);
+    io.emit("message", { user: "admin", text: `${user.name} has left` });
+    console.log("disconnect");
   });
   socket.on("join", ({ name }, callback) => {
     const { error, user } = addUser({ id: socket.id, name });
@@ -20,10 +22,11 @@ io.on("connection", (socket) => {
       user: "admin",
       text: `Hello ${name} welcome to mt first chat app`,
     });
+    socket.broadcast.emit('message',{user:"admin",text:` ${name} has joined`})
+
   });
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
-    // console.log(user);
     io.emit("message", { user: user.name, text: message });
     callback();
   });

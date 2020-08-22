@@ -1,3 +1,5 @@
+const { get } = require("./router");
+
 const users = [];
 const addUser = ({ id, name }) => {
   name = name.trim();
@@ -10,7 +12,7 @@ const addUser = ({ id, name }) => {
 const removeUser = (id) => {
   const index = users.findIndex((user) => user.id === id);
   if (index !== -1) {
-    users.splice(index, 1);
+    return users.splice(index, 1)[0]
   }
 };
 getUser = (id) => {

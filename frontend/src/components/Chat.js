@@ -45,9 +45,6 @@ const Chat = () => {
         setMessage("");
       });
   };
-  useEffect(() => {
-     console.log(messages);
-  }, [messages])
   return (
     <>
       <Container className={classes.container} maxWidth="sm">
@@ -58,7 +55,6 @@ const Chat = () => {
           flexDirection="column"
           borderRadius="12px"
           boxShadow="2px 2px 10px lightGrey"
-          border="2px solid red"
         >
           <NavBar />
           <Window messages={messages} name={name}/>

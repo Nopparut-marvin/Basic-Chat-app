@@ -1,12 +1,24 @@
 import React from "react";
-import { Box } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Message from "./Message";
+const useStyles = makeStyles((theme) => ({
+  scroll: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#a8dadc",
+  },
+}));
 const Window = ({ messages, name }) => {
+  const classes = useStyles();
   return (
     <>
-      <Box width="100%" border="2px solid yellow" height="100%">
-        <ScrollToBottom style={{ overflow: "auto" }}>
+      <Box
+        width="100%"
+        height="100%"
+        style={{ overflow: "auto", flex: "auto" }}
+      >
+        <ScrollToBottom className={classes.scroll}>
           {messages.map((message, i) => (
             <div key={i}>
               <Message message={message} name={name} />
