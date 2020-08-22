@@ -10,14 +10,18 @@ const io = socketio(server);
 const { addUser, removeUser, getUser } = require("./user.js");
 io.on("connection", (socket) => {
   console.log("connection");
-  socket.on("disconnect", () => {
+  socket.on("disconnect", (force) => {
+    if(force === true){
+      console.log("disconnect");
+    }else{
     const user = removeUser(socket.id);
     io.emit("message", { user: "admin", text: `${user.name} has left` });
     console.log("disconnect");
+    }
   });
   socket.on("join", ({ name }, callback) => {
     const { error, user } = addUser({ id: socket.id, name });
-    if (error) return callback({ error });
+    if (error) return callback( error );
     socket.emit("message", {
       user: "admin",
       text: `Hello ${name} welcome to mt first chat app`,

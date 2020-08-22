@@ -27,7 +27,11 @@ const Chat = () => {
     setName(name);
     socket = io(PORT_SOCKET);
     console.log({ socket });
-    socket.emit("join", { name }, () => {});
+    socket.emit("join", { name }, (error) => {
+        alert(error)
+        window.history.back();
+ 
+    });
     return () => {
       socket.emit("disconnect");
       socket.off();
@@ -56,7 +60,7 @@ const Chat = () => {
           borderRadius="12px"
           boxShadow="2px 2px 10px lightGrey"
         >
-          <NavBar />
+          <NavBar logout={() => socket.disconnect()}/>
           <Window messages={messages} name={name}/>
           <Form setMessage={setMessage} sendMessage={sendMessage} message={message}/>
         </Box>
