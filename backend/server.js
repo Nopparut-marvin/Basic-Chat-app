@@ -9,25 +9,30 @@ const io = socketio(server);
 
 const { addUser, removeUser, getUser } = require("./user.js");
 io.on("connection", (socket) => {
-  console.log("connection");
+  // console.log("connection");
   socket.on("disconnect", (force) => {
-    if(force === true){
+    if (force === true) {
+      // console.log("disconnect");
+    } else {
+      const user = removeUser(socket.id);
+      io.emit("message", {
+        user: "แอดมิน",
+        text: `${user.name} ออกจากห้องแชท`,
+      });
       console.log("disconnect");
-    }else{
-    const user = removeUser(socket.id);
-    io.emit("message", { user: "admin", text: `${user.name} has left` });
-    console.log("disconnect");
     }
   });
   socket.on("join", ({ name }, callback) => {
     const { error, user } = addUser({ id: socket.id, name });
-    if (error) return callback( error );
+    if (error) return callback(error);
     socket.emit("message", {
-      user: "admin",
-      text: `Hello ${name} welcome to mt first chat app`,
+      user: "แอดมิน",
+      text: `สวัสดี ${name} ยินดีต้อนรับสู่ MarvinChat แอพพลิเคชัน`,
     });
-    socket.broadcast.emit('message',{user:"admin",text:` ${name} has joined`})
-
+    socket.broadcast.emit("message", {
+      user: "แอดมิน",
+      text: ` ${name} เข้าห้องแชท`,
+    });
   });
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);

@@ -28,9 +28,8 @@ const Chat = () => {
     socket = io(PORT_SOCKET);
     console.log({ socket });
     socket.emit("join", { name }, (error) => {
-        alert(error)
-        window.history.back();
- 
+      alert(error);
+      window.history.back();
     });
     return () => {
       socket.emit("disconnect");
@@ -39,7 +38,7 @@ const Chat = () => {
   }, [PORT_SOCKET]);
   useEffect(() => {
     socket.on("message", (message) => {
-      setMessages(messages => [ ...messages, message ]);
+      setMessages((messages) => [...messages, message]);
     });
   }, []);
   const sendMessage = (event) => {
@@ -60,9 +59,13 @@ const Chat = () => {
           borderRadius="12px"
           boxShadow="2px 2px 10px lightGrey"
         >
-          <NavBar logout={() => socket.disconnect()}/>
-          <Window messages={messages} name={name}/>
-          <Form setMessage={setMessage} sendMessage={sendMessage} message={message}/>
+          <NavBar logout={() => socket.disconnect()} />
+          <Window messages={messages} name={name} />
+          <Form
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+            message={message}
+          />
         </Box>
       </Container>
     </>
