@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Button, TextField, makeStyles } from "@material-ui/core";
 import icon from "../images/send.svg";
+import '../Fonts/Kanit-Regular.ttf'
 const useStyles = makeStyles((theme) => ({
   button: {
     height: "100%",
@@ -31,14 +32,14 @@ const Form = ({ setMessage, sendMessage, message }) => {
 
   return (
     <>
-      <Box width="100%" height="55px">
+      <Box width="100%" height="55px" fontFamily="Kanit">
         <Box className="wrapBox" display="flex" width="100%">
           <Box width="100%">
             <TextField
               variant="outlined"
               fullWidth
               value={message}
-              placeholder="write..."
+              placeholder="พิมพ์เลย"
               className={classes.inArea}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={(e) => (e.key === "Enter" ? sendMessage(e) : null)}

@@ -8,6 +8,7 @@ import {
   makeStyles,
   Box,
 } from "@material-ui/core";
+import '../Fonts/Kanit-Regular.ttf'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -35,15 +36,15 @@ const Login = () => {
   const handleClick = () => {};
   return (
     <>
-      <Container className={classes.container} maxWidth="sm">
+      <Container className={classes.container} maxWidth="sm" >
         <Box
           className={classes.paper}
           borderRadius="12px"
           boxShadow="2px 2px 10px lightGrey"
+          fontFamily="Kanit"
+          fontSize="30px"
         >
-          <Typography variant="h5" color="primary" align="center">
-            Please enter your name
-          </Typography>
+          กรุณากรอกชื่อของท่าน
           <Box className="wrapBox" display="flex" width="90%">
             <Box flexGrow="8">
               <TextField
@@ -59,7 +60,7 @@ const Login = () => {
             <Box
               flexGrow="1"
               display="flex"
-              alignItems="center"
+              // alignItems="center"
               paddingLeft="20px"
             >
               <Link to={`chat?name=${name}`}>

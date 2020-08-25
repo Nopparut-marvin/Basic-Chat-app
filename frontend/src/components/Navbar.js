@@ -2,6 +2,7 @@ import React from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import close from "../images/close.svg";
 import { Link } from "react-router-dom";
+import '../Fonts/Kanit-Regular.ttf'
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -25,9 +26,8 @@ const Navbar = ({logout}) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Box marginLeft="15px">App chat</Box>
+        <Box marginLeft="15px" fontFamily="Kanit" color="white">MarvinChat แอพพลิเคชัน</Box>
         <Link to={'/'} onClick={logout}>
-            
           <Box marginRight="20px" className={classes.icon}/>
         </Link>
       </Box>
