@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     backgroundColor: "#a8dadc",
-    paddingTop:"10px"
+    paddingTop: "10px",
   },
 }));
 const Window = ({ messages, name }) => {

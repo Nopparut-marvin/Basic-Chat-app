@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, TextField, makeStyles } from "@material-ui/core";
 import icon from "../images/send.svg";
-import '../Fonts/Kanit-Regular.ttf'
+import "../Fonts/Kanit-Regular.ttf";
 const useStyles = makeStyles((theme) => ({
   button: {
     height: "100%",
